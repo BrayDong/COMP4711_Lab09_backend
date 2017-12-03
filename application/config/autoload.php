@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |  $autoload['packages'] = array(APPPATH.'third_party', '/usr/local/shared');
 |
 */
-$autoload['packages'] = array(APPPATH.'third_party/restful/');
+$autoload['packages'] = array(APPPATH.'third_party/restful/', APPPATH.'third_party/logging/');
 
 /*
 | -------------------------------------------------------------------
@@ -58,7 +58,7 @@ $autoload['packages'] = array(APPPATH.'third_party/restful/');
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('parser', 'parsedown', 'session');
+$autoload['libraries'] = array('parser', 'parsedown', 'session', 'logger');
 
 /*
 | -------------------------------------------------------------------

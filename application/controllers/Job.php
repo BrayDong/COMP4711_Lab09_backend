@@ -25,6 +25,9 @@ class Job extends Rest_Controller {
     function index_get($key=null)
     {
 
+        Logger::log("index_get($key):");
+        Logger::log($_GET);
+
         if(!$key) {
             $this->response($this->tasks->all(), 200);
         }
@@ -41,7 +44,23 @@ class Job extends Rest_Controller {
     // Handle an incoming PUT - update a todo item
     function index_put($key=null)
     {
-        $record = array_merge(array('id' => $key), $this->_put_args);
+        Logger::log("index_put($key):");
+
+        $arr = $this->_put_args;
+
+        Logger::log($arr);
+
+
+        //var_dump($arr);
+
+        if(empty($arr)) {
+            throw new Exception("index_put: no put arguments!");
+        }
+
+//        echo "index_put arguments:\n\n<br>\n\n";
+//        print_r($arr);
+
+        $record = array_merge(array('id' => $key), $arr);
         $this->tasks->update($record);
         $this->response(array('ok'), 200);
     }
@@ -49,6 +68,11 @@ class Job extends Rest_Controller {
     // Handle an incoming POST - add a new todo item
     function index_post($key=null)
     {
+
+        Logger::log("index_post($key):");
+        Logger::log($_POST);
+
+
         $record = array_merge(array('id' => $key), $_POST);
         $this->tasks->add($record);
         $this->response(array('ok'), 200);
@@ -57,6 +81,8 @@ class Job extends Rest_Controller {
 // Handle an incoming DELETE - cruD
     function index_delete($key=null)
     {
+        Logger::log("index_delete($key):");
+
         $this->tasks->delete($key);
         $this->response(array('ok'), 200);
     }

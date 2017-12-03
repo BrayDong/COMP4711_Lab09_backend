@@ -156,8 +156,20 @@ class XML_Model extends Memory_Model
 
             foreach($row AS $key => $value) {
 
-                $element = $domDoc->createElement($key);
-                $element->appendChild($domDoc->createTextNode($value));
+                //echo "Trying to save $key => $value\n\n";
+
+                if(@$key[0] == "-") continue;
+
+                try {
+                    $element = $domDoc->createElement($key);
+                    $element->appendChild($domDoc->createTextNode($value));
+
+                } catch (Exception $e) {
+                    Logger::log( "XML failed to add:");
+                    Logger::log("KEY: ".Logger::COLOR_DEBUG . $key . Logger::COLOR_OFF);
+                    Logger::log("VALUE: ".Logger::COLOR_DEBUG . $value . Logger::COLOR_OFF);
+                    throw $e;
+                }
 
                 $rowElement->appendChild($element);
             }

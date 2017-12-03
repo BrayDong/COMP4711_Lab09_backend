@@ -157,6 +157,10 @@ class Memory_Model extends Entity implements DataMapper
 	// Update a record in the collection
 	function update($record)
 	{
+
+//	    echo "backend update: \n";
+//	    print_r($record);
+
 		// convert object from associative array, if needed
 		$record = (is_array($record)) ? (object) $record : $record;
 		// update the collection appropriately
