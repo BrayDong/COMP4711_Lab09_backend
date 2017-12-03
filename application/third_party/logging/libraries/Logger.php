@@ -72,14 +72,12 @@ class Logger {
 
     static function log($msg, $echoToo=null, $asHTML=null) {
         //echo $_SERVER['REMOTE_ADDR'];
-        Global $logging, $auth;
+        Global $logging;
 
-        //print_r($logging);
 
-# 	DO NOT USE PROFILE here.  The Profile class uses logger(), which causes infinite recursion.  Oops!
-# 	Global $profile;
-# 	if( is_object( $profile ) ) $profile->start();
-
+        if(!$logging['enabled']) {
+            return false;
+        }
 
 
         $logfile = "/tmp/webapp.log";
