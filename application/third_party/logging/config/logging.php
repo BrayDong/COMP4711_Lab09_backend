@@ -7,7 +7,7 @@
 
 global $logging;
 $logging = array(
-    "enabled"   => true,
+    "enabled"   => false,
     "logfile"   => "/Applications/XAMPP/logs/".$_SERVER['SERVER_NAME'].".log",
     "owner"     => get_current_user(),
     "group"     => get_current_user(),
